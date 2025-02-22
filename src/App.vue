@@ -12,14 +12,14 @@ import { initWMS } from "./views/geoserver/wms";
 import { initWFS } from "./views/geoserver/wfs";
 import { initWMTS } from "./views/geoserver/wmts";
 import { initTDTWMTS } from "./views/tdt/wmts";
-import { initXYZ } from "./views/tdt/xyz";
+import { initTDTXYZ } from "./views/tdt/xyz";
 onMounted(() => {
   // createMap();
   // initWMS()
   // initWFS()
   // initWMTS();
   // initTDTWMTS()
-  initXYZ();
+  initTDTXYZ();
 });
 </script>
 

@@ -11,7 +11,7 @@ import * as tilegrid from "ol/tilegrid";
  * 天地图 提供的瓦片url，可以直接xyz加载
  
  */
-export function initXYZ() {
+export function initTDTXYZ() {
   // 创建地图
   new ol.Map({
     target: "map",
