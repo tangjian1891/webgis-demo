@@ -4,12 +4,18 @@
 </template>
 
 <script setup lang="ts">
+import "ol/ol.css";
 import { RouterLink, RouterView } from "vue-router";
-import { createMap } from "./views/map/osg";
+import { createMap } from "./views/map/osm";
 import { onMounted } from "vue";
-import "ol/ol.css"
+import { initWMS } from "./views/map/wms";
+import { initWFS } from "./views/map/wfs";
+import { initWMTS } from "./views/map/wmts";
 onMounted(() => {
-  createMap();
+  // createMap();
+  // initWMS()
+  // initWFS()
+  initWMTS();
 });
 </script>
 
@@ -21,7 +27,8 @@ body {
   overflow: hidden;
 }
 
-#app,#map {
+#app,
+#map {
   width: 100%;
   height: 100%;
 }
