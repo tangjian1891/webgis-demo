@@ -14,20 +14,29 @@ import * as tilegrid from "ol/tilegrid";
 /**
  * 标准的wmts地址为         http://localhost:8080/geoserver/gwc/service/wmts // gwc=GeoWebCache
  */
-export function initWMTS() {
+
+/**
+ * 天地图
+ *  注意要TK
+ * 注意matrixIds 直接索引就行
+ * 注意 vec_w还是vec_c
+ */
+export function initTDTWMTS() {
   // 坐标系
-  const wmtsBaseUrl = "http://localhost:8080/geoserver/gwc/service/wmts";
-  const projectionStr = "EPSG:900913"; // 使用 Web Mercator
-  const layerName = "ne:boundary_lines";
+  const wmtsBaseUrl =
+    "http://t0.tianditu.gov.cn/vec_w/wmts?tk=b736560fb4eee72b3637128cf90c18f1";
+  const projectionStr = "EPSG:3857"; // 使用 Web Mercator  
+//   const projectionStr = "EPSG:4326"; // 使用 Web Mercator  
+  const layerName = "vec";
   const projection = proj.get(projectionStr);
   const projectionExtent = projection.getExtent();
   const size = extent.getWidth(projectionExtent) / 256;
   const resolutions = new Array(19);
   const matrixIds = new Array(19);
   for (let z = 3; z < 19; ++z) {
-    // generate resolutions and matrixIds arrays for this WMTS
     resolutions[z] = size / Math.pow(2, z);
-    matrixIds[z] = projectionStr + ":" + z;
+    // matrixIds[z] = projectionStr + ":" + z;
+    matrixIds[z] = z;
   }
 
   // 创建 WMTS 源
@@ -36,6 +45,7 @@ export function initWMTS() {
     layer: layerName,
     matrixSet: projectionStr, // 根据实际情况调整矩阵集
     format: "image/png",
+    // tileMatrixSet: "c",
     projection: projectionStr,
     tileGrid: new tilegrid.WMTS({
       origin: extent.getTopLeft(projectionExtent),

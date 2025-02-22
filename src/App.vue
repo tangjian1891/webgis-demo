@@ -8,14 +8,18 @@ import "ol/ol.css";
 import { RouterLink, RouterView } from "vue-router";
 import { createMap } from "./views/map/osm";
 import { onMounted } from "vue";
-import { initWMS } from "./views/map/wms";
-import { initWFS } from "./views/map/wfs";
-import { initWMTS } from "./views/map/wmts";
+import { initWMS } from "./views/geoserver/wms";
+import { initWFS } from "./views/geoserver/wfs";
+import { initWMTS } from "./views/geoserver/wmts";
+import { initTDTWMTS } from "./views/tdt/wmts";
+import { initXYZ } from "./views/tdt/xyz";
 onMounted(() => {
   // createMap();
   // initWMS()
   // initWFS()
-  initWMTS();
+  // initWMTS();
+  // initTDTWMTS()
+  initXYZ();
 });
 </script>
 
